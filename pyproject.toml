@@ -1,8 +1,8 @@
 [project]
 name = "codeowners-cli"
-version = "0.9.0"
+version = "0.1.0"
 description = "Codeowners parser and CLI for Python"
-authors = [{ name = "Zachary Blackwood", email = "zachary.blackwood@snowflake.com" }]
+authors = [{ name = "Zachary Blackwood", email = "zblackwo@gmail.com" }]
 readme = "README.md"
 license = { text = "MIT" }
 keywords = ["codeowners", "git", "github"]
