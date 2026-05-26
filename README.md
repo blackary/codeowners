@@ -1,61 +1,67 @@
-# codeowners [![CircleCI](https://circleci.com/gh/sbdchd/codeowners.svg?style=svg)](https://circleci.com/gh/sbdchd/codeowners) [![pypi](https://img.shields.io/pypi/v/codeowners.svg)](https://pypi.org/project/codeowners/)
+# codeowners-cli
 
-> Python codeowners parser based on [softprops's Rust
-> library](https://crates.io/crates/codeowners) and [hmarr's Go
-> library](https://github.com/hmarr/codeowners/).
-
-## Why?
-
-To allow Python users to parse [codeowners
-files](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/about-code-owners#codeowners-syntax)
-in Python.
+Python codeowners parser with a CLI — look up file owners from your `CODEOWNERS` file.
 
 ## Install
 
-```shell
-pip install codeowners
+```bash
+# Run once with uvx
+uvx codeowners-cli <filenames>
+
+# Or install persistently
+uv tool install codeowners-cli
 ```
 
-## Usage
+## CLI Usage
+
+```bash
+# Auto-detects CODEOWNERS in the current git repo
+codeowners-cli src/foo.py tests/bar.py
+
+# Explicit path
+codeowners-cli --codeowners .github/CODEOWNERS src/foo.py
+
+# Only show files that have owners
+codeowners-cli --only-owners src/foo.py src/bar.py
+
+# Structured output
+codeowners-cli --output json src/foo.py
+codeowners-cli --output csv  src/foo.py
+codeowners-cli --output tsv  src/foo.py
+```
+
+Default text output:
+
+```
+filename        owners
+src/foo.py      @alice @team/backend
+src/bar.py      user@example.com
+```
+
+## Library Usage
 
 ```python
 from codeowners import CodeOwners
 
-example_file = """\
-# owners for js files
-*.js    @ghost
-# python
-*.py user@example.com
-# misc
-/build/logs/ @dmin
-docs/*  docs@example.com
-"""
-
-owners = CodeOwners(example_file)
-assert owners.of("test.js") ==  [('USERNAME', '@ghost')]
+owners = CodeOwners(open("CODEOWNERS").read())
+print(owners.of("src/foo.py"))
+# [('USERNAME', '@alice'), ('TEAM', '@team/backend')]
 ```
 
-## Dev
+## Development
 
-```shell
-poetry install
+```bash
+uv sync
 
-s/test
+# Run tests
+uv run pytest
 
-s/lint
-```
+# Lint
+uv run ruff check .
 
-## Releasing a New Version
+# Format
+uv run ruff format .
 
-```shell
-# bump version in pyproject.toml
-
-# update CHANGELOG.md
-
-# commit release commit to GitHub
-
-# build and publish
-poetry publish --build
-
-# create a release in the GitHub UI
+# Type check
+uv run ty check
 ```
