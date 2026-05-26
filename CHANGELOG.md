@@ -5,59 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
-
-# 0.8.0 - 2025-04-25
-
-- Fix `**/` to only match whole path segments. Thanks @RedBeard0531!
-
-# 0.7.0 - 2024-03-07
-
-- Support no-subdirs syntax. Thanks @phil-bradbury!
-
-# 0.6.0 - 2022-07-22
-
-- Support gitlab sections (#38). Thanks @corbinbs!
-
-- Allow listing all matching lines (#37). Thanks @glujan!
-
-# 0.5.0 - 2022-05-05
+## [0.1.0] - 2026-05-26
 
 ### Added
 
-- returning path alongside owners for `matching_line` (#35). Thanks @pahwaranger!
-
-# 0.4.1 - 2022-05-26
-
-### Added
-
-- Support typing_extensions v4. Thanks @martinxsliu!
-
-# 0.4.0 - 2021-08-24
-
-### Added
-
-- `matching_line` method to return line of code owners match (#26). Thanks @valeryz!
-
-# 0.3.0 - 2021-03-16
-
-### Added
-
-- ignore GitLab specific codeowner sections (#23)
-
-## 0.2.1 - 2021-01-27
-
-### Fixed
-
-- Fixed broken directory expansion
-
-## 0.2.0 - 2021-01-24
-
-### Added
-
-- added type hints
-
-### Changed
-
-- no longer using bindings to Rust library, instead the parsing is done in Python
-  - this makes distributing easier
+- `codeowners-cli` entry point, installable via `uvx codeowners-cli`
+- `--only-owners` flag to filter files without owners
+- `--output` flag supporting `text`, `csv`, `tsv`, and `json` formats
+- `--no-header` flag to omit the header row
+- Auto-detection of `CODEOWNERS`, `.github/CODEOWNERS`, and `docs/CODEOWNERS`
