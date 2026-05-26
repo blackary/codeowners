@@ -2,11 +2,10 @@
 
 Python codeowners parser with a CLI — look up file owners from your `CODEOWNERS` file.
 
-This is a fork of [blackary/codeowners](https://github.com/blackary/codeowners) (itself a fork of
-[sbdchd/codeowners](https://github.com/sbdchd/codeowners)), which is a Python port of
+This is a fork of [sbdchd/codeowners](https://github.com/sbdchd/codeowners), which is a Python port of
 [hmarr's Go library](https://github.com/hmarr/codeowners/) and
 [softprops's Rust crate](https://crates.io/crates/codeowners).
-The fork adds a `codeowners-cli` entry point installable via `uvx`, and modernizes the project
+This fork adds a `codeowners-cli` entry point installable via `uvx`, and modernizes the project
 tooling to use `uv`, `ruff`, and `ty`.
 
 ## Install
